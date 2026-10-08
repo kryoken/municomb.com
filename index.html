@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+    <title>MUNIComb — Coming Fall 2026</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --paper: #edf2ec;
+        --ink: #10231a;
+        --muted: #4f6156;
+        --line: rgba(16, 35, 26, 0.16);
+        --line-strong: rgba(16, 35, 26, 0.3);
+        --mesh: #1c7a46;
+        --mesh-bright: #2ca15e;
+        --mesh-soft: rgba(28, 122, 70, 0.12);
+        --shadow: rgba(13, 36, 24, 0.12);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --paper: #07110c;
+          --ink: #eaf3ec;
+          --muted: #96a99c;
+          --line: rgba(222, 241, 228, 0.13);
+          --line-strong: rgba(222, 241, 228, 0.3);
+          --mesh: #53ce82;
+          --mesh-bright: #8cf0ad;
+          --mesh-soft: rgba(83, 206, 130, 0.1);
+          --shadow: rgba(0, 0, 0, 0.38);
+        }
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body { min-height: 100%; }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "IBM Plex Sans", sans-serif;
+        overflow-x: hidden;
+      }
+
+      .page {
+        min-height: 100svh;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        padding: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+        position: relative;
+        isolation: isolate;
+      }
+
+      .page::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        pointer-events: none;
+        background-image:
+          linear-gradient(var(--line) 1px, transparent 1px),
+          linear-gradient(90deg, var(--line) 1px, transparent 1px);
+        background-size: 72px 72px;
+        -webkit-mask-image: radial-gradient(circle at 72% 45%, black, transparent 69%);
+        mask-image: radial-gradient(circle at 72% 45%, black, transparent 69%);
+        opacity: .42;
+      }
+
+      .topline {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--line);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        line-height: 1.4;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+
+      .wordmark {
+        font-family: "IBM Plex Sans", sans-serif;
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: -.02em;
+        text-transform: none;
+      }
+
+      .status {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      .status-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--mesh);
+        box-shadow: 0 0 0 5px var(--mesh-soft);
+      }
+
+      .hero {
+        width: min(1180px, 100%);
+        margin: auto;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, .82fr);
+        align-items: center;
+        gap: clamp(40px, 7vw, 108px);
+        padding: clamp(64px, 9vh, 120px) 0;
+      }
+
+      .copy { max-width: 670px; }
+
+      .season {
+        margin: 0 0 28px;
+        font-family: "IBM Plex Mono", monospace;
+        color: var(--mesh);
+        font-size: clamp(13px, 1.15vw, 16px);
+        font-weight: 500;
+        letter-spacing: .13em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 9ch;
+        font-size: clamp(54px, 8vw, 112px);
+        line-height: .88;
+        font-weight: 500;
+        letter-spacing: -.075em;
+        text-wrap: balance;
+      }
+
+      .accent {
+        display: block;
+        color: var(--mesh);
+      }
+
+      .statement {
+        margin: clamp(28px, 4vw, 52px) 0 0;
+        padding-top: 22px;
+        border-top: 1px solid var(--line-strong);
+        max-width: 410px;
+        color: var(--muted);
+        font-size: clamp(17px, 1.45vw, 21px);
+        line-height: 1.5;
+      }
+
+      .mesh-stage {
+        aspect-ratio: 1;
+        width: min(100%, 510px);
+        justify-self: end;
+        position: relative;
+        display: grid;
+        place-items: center;
+      }
+
+      .mesh-stage::before {
+        content: "";
+        position: absolute;
+        inset: 8%;
+        border-radius: 50%;
+        background: var(--mesh-soft);
+        filter: blur(42px);
+      }
+
+      .mesh {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        filter: drop-shadow(0 24px 45px var(--shadow));
+      }
+
+      .orbit,
+      .link,
+      .node { vector-effect: non-scaling-stroke; }
+
+      .orbit {
+        fill: none;
+        stroke: var(--line-strong);
+        stroke-width: 1;
+      }
+
+      .link {
+        fill: none;
+        stroke: var(--mesh);
+        stroke-width: 1.35;
+        stroke-linecap: round;
+        opacity: .63;
+      }
+
+      .link.soft { opacity: .27; }
+
+      .node {
+        fill: var(--paper);
+        stroke: var(--mesh);
+        stroke-width: 2;
+      }
+
+      .node.hot {
+        fill: var(--mesh-bright);
+        stroke: var(--paper);
+        stroke-width: 3;
+      }
+
+      .pulse {
+        transform-origin: 333px 108px;
+        animation: pulse 3.8s ease-out infinite;
+      }
+
+      .sweep {
+        transform-origin: 250px 250px;
+        animation: turn 22s linear infinite;
+      }
+
+      .footline {
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        color: var(--muted);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        line-height: 1.45;
+        letter-spacing: .05em;
+        text-transform: uppercase;
+      }
+
+      @keyframes pulse {
+        0% { transform: scale(.55); opacity: .72; }
+        75%, 100% { transform: scale(2.8); opacity: 0; }
+      }
+
+      @keyframes turn { to { transform: rotate(360deg); } }
+
+      @media (max-width: 760px) {
+        .page {
+          min-height: 100dvh;
+          padding-inline: 20px;
+        }
+
+        .topline { padding-bottom: 14px; }
+        .status-label { display: none; }
+
+        .hero {
+          grid-template-columns: 1fr;
+          align-content: center;
+          gap: 16px;
+          padding: 50px 0 42px;
+        }
+
+        .copy { z-index: 1; }
+        .season { margin-bottom: 20px; }
+        h1 { font-size: clamp(52px, 18vw, 82px); }
+        .statement { margin-top: 25px; max-width: 320px; }
+
+        .mesh-stage {
+          width: min(84vw, 390px);
+          justify-self: end;
+          margin-top: -28px;
+          margin-right: -13%;
+          opacity: .78;
+        }
+
+        .footline { align-items: flex-end; }
+        .footline span:last-child { text-align: right; }
+      }
+
+      @media (max-height: 680px) and (min-width: 761px) {
+        .hero { padding: 36px 0; }
+        .mesh-stage { width: min(56vh, 430px); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .pulse, .sweep { animation: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <div class="topline" aria-label="MUNIComb project status">
+        <span class="wordmark">MUNIComb</span>
+        <span class="status"><span class="status-dot" aria-hidden="true"></span><span class="status-label">Signal forming</span></span>
+      </div>
+
+      <section class="hero" aria-labelledby="launch-title">
+        <div class="copy">
+          <p class="season">Coming Fall 2026</p>
+          <h1 id="launch-title">The network <span class="accent">is the product.</span></h1>
+          <p class="statement">A new kind of computing network is taking shape.</p>
+        </div>
+
+        <div class="mesh-stage" aria-hidden="true">
+          <svg class="mesh" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+            <circle class="orbit" cx="250" cy="250" r="185" />
+            <ellipse class="orbit" cx="250" cy="250" rx="185" ry="72" />
+            <ellipse class="orbit" cx="250" cy="250" rx="72" ry="185" />
+            <g class="sweep">
+              <ellipse class="orbit" cx="250" cy="250" rx="140" ry="185" transform="rotate(48 250 250)" />
+              <ellipse class="orbit" cx="250" cy="250" rx="140" ry="185" transform="rotate(-48 250 250)" />
+            </g>
+
+            <path class="link" d="M90 177 167 117 250 78 333 108 410 182 430 255 390 337 312 410 221 428 136 378 70 284 90 177Z" />
+            <path class="link" d="M90 177 184 204 250 78 284 196 410 182M70 284l114-80 30 104-78 70m48-174 100-8 106 141m-176-29 98 102 20-214m-98 112 176 29M214 308l-78 70 85 50 91-18 78-73M184 204l-17-87m117 79 49-88M214 308 70 284m242 126L214 308" />
+            <path class="link soft" d="M167 117 184 204 136 378M250 78l-83 39M333 108 284 196M410 182l-126 14M430 255 390 337M221 428l-7-120" />
+
+            <circle class="node" cx="90" cy="177" r="8" />
+            <circle class="node" cx="167" cy="117" r="7" />
+            <circle class="node" cx="250" cy="78" r="8" />
+            <circle class="node hot" cx="333" cy="108" r="10" />
+            <circle class="pulse orbit" cx="333" cy="108" r="13" />
+            <circle class="node" cx="410" cy="182" r="7" />
+            <circle class="node" cx="430" cy="255" r="8" />
+            <circle class="node" cx="390" cy="337" r="9" />
+            <circle class="node" cx="312" cy="410" r="7" />
+            <circle class="node" cx="221" cy="428" r="8" />
+            <circle class="node" cx="136" cy="378" r="7" />
+            <circle class="node" cx="70" cy="284" r="8" />
+            <circle class="node" cx="184" cy="204" r="8" />
+            <circle class="node" cx="284" cy="196" r="7" />
+            <circle class="node hot" cx="214" cy="308" r="10" />
+          </svg>
+        </div>
+      </section>
+
+      <div class="footline">
+        <span>Mesh Unity<br />Network Incentive</span>
+        <span>municomb.com</span>
+      </div>
+    </main>
+  </body>
+</html>
