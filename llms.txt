@@ -1,0 +1,63 @@
+# MUNIComb
+
+> The network is the product.
+
+MUNIComb — Mesh Unity Network Incentive — is a new kind of computing network,
+currently taking shape. Launching Fall 2026.
+
+## The problem
+
+The world's spare compute is staggering, and most of it sits at zero
+utilization: old graphics cards, retired office machines, phones replaced on a
+two-year cycle. Hardware that still works, doing nothing. MUNIComb's opening
+argument is that this "junk" can punch above its weight — put to work, it
+becomes productive infrastructure.
+
+## What it is
+
+A decentralized mesh that turns idle hardware into productive AI compute,
+starting with AI video generation pipelines (script, voice, edit, render).
+Contributors get paid for real work completed — nothing for nothing. The mesh
+grows. Everyone can play.
+
+## Who it's for
+
+- **Hardware owners**: people with idle machines — old GPUs, spare computers,
+  phones — who want that hardware earning instead of gathering dust.
+- **Customers**: people and teams who need AI media work done and want finished
+  output, not server time.
+
+## Principles
+
+- Tend the mesh. Don't own it.
+- Nothing is useless. If it computes, it counts.
+- Nurture, don't control: the network grows because participants choose it.
+- Idle is an opportunity: every idle cycle is inventory waiting for demand.
+- Everyone can play: the worker footprint is deliberately tiny, built to run on
+  anything from aging GPUs down to phones.
+- Prove it, then scale it: every claim is demonstrated on real hardware first.
+
+## What MUNIComb is not
+
+- Not a token presale. There is no ICO, no presale, no public token sale.
+- Not cloud mining.
+- Not a hosting company. The network never hosts content; it produces work
+  for customers who own what they make.
+
+## Glossary
+
+- **MUNIComb**: Mesh Unity Network Incentive — the project and the network.
+- **The mesh**: the network of contributor machines doing the work.
+- **Node operators**: the people who run machines on the mesh.
+
+## Status
+
+In private development. Public launch Fall 2026. Watch this domain.
+
+## Pages
+
+- [Home](https://municomb.com/): launch teaser and project statement.
+
+## Contact
+
+- General inquiries: hello@municomb.com
