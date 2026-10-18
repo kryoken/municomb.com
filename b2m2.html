@@ -418,6 +418,7 @@
         var presetRatio = 1;
         var artImage = null;   // HTMLImageElement holding current art, or null
         var rendering = false;
+        var workingSubject = null; // first prompt of the session; carried into edit passes
 
         /* ---------- helpers ---------- */
 
@@ -540,12 +541,18 @@
           var editing = !!artImage;
           var dims = renderDims(presetRatio);
           var jobId = "job_preview_" + Date.now();
+          // Edit passes carry the session's working subject forward so it
+          // persists across refinements; fresh renders send the prompt as-is.
+          var sendPrompt = (editing && workingSubject)
+            ? workingSubject + ", " + prompt
+            : prompt;
           var payload = {
-            prompt: prompt,
+            prompt: sendPrompt,
+            negative_prompt: "text, words, letters, typography, font, watermark, signature, label, misspelled text",
             seed: 42,
             preset: presetName,
             steps: 4,
-            denoise: 0.60,
+            denoise: editing ? 0.40 : 0.60,
             width: dims.width,
             height: dims.height,
             model_name: MODEL
@@ -594,6 +601,7 @@
           }
 
           artImage = img;
+          if (!editing) workingSubject = prompt; // first prompt becomes the working subject
           drawArt();
           syncArtUI();
           setStatus(editing
@@ -629,6 +637,7 @@
           var img = new Image();
           img.onload = function () {
             artImage = img;
+            workingSubject = null; // a new image starts a new subject chain
             drawArt();
             syncArtUI();
             setStatus("Image loaded. Describe a change to refine it with the mesh.");
@@ -642,6 +651,7 @@
 
         newBtn.addEventListener("click", function () {
           artImage = null;
+          workingSubject = null;
           drawArt();
           syncArtUI();
           promptInput.value = "";
