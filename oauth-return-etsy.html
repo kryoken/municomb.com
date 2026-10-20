@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Return to B2M2 Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f3efe6;
+        --panel: #fffdf7;
+        --ink: #26231c;
+        --muted: #6f6a5c;
+        --line: #ddd5c2;
+        --gold: #a97a14;
+        --gold-strong: #8a6208;
+        --gold-bright: #e9b83c;
+        --btn-ink: #1c1a14;
+        --shadow: 0 10px 30px rgba(38, 32, 12, 0.14);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #131315;
+          --panel: #1d1d20;
+          --ink: #f2ecdc;
+          --muted: #a49d8c;
+          --line: #2e2e33;
+          --gold: #e0aa3e;
+          --gold-strong: #f2c14e;
+          --gold-bright: #f2c14e;
+          --btn-ink: #191407;
+          --shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
+        }
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Public Sans", system-ui, -apple-system, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.6;
+      }
+      .wrap { max-width: 560px; margin: 0 auto; padding: 64px 22px 72px; }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        padding: 40px 34px;
+        text-align: center;
+      }
+      .brand {
+        font-family: "Sora", sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 18px;
+      }
+      h1 { font-family: "Sora", sans-serif; font-size: 1.55rem; margin: 0 0 10px; }
+      p { font-size: 1rem; color: var(--muted); margin: 0 0 14px; }
+      .btn {
+        display: inline-block;
+        margin-top: 16px;
+        padding: 14px 28px;
+        border-radius: 999px;
+        background: var(--gold-bright);
+        color: var(--btn-ink);
+        font-family: "Sora", sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+      }
+      .btn:active { background: var(--gold-strong); color: #fff; }
+      .fine { font-size: 0.85rem; margin-top: 22px; }
+    </style>
+    <script>
+      // Hand the authorization result back to the B2M2 Studio app.
+      // Preserves the full query string (code, state, or error) untouched.
+      (function () {
+        var target = "com.municomb.studio://etsy-oauth" + window.location.search;
+        window.addEventListener("DOMContentLoaded", function () {
+          var btn = document.getElementById("returnBtn");
+          btn.setAttribute("href", target);
+          var params = new URLSearchParams(window.location.search);
+          if (params.get("error") || params.get("status") === "declined") {
+            document.getElementById("headline").textContent = "No problem — nothing was connected";
+            document.getElementById("lede").textContent =
+              "You declined the connection, so B2M2 Studio has no access to your Etsy account. You can return to the app and connect later whenever you're ready.";
+          }
+          // Try the hand-off automatically; the button is the fallback.
+          setTimeout(function () { window.location.href = target; }, 600);
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <div class="brand">MUNIComb</div>
+        <h1 id="headline">You're connected</h1>
+        <p id="lede">
+          Etsy authorization is complete. Return to B2M2 Studio to finish setting up
+          your account — this page will hand you back to the app automatically.
+        </p>
+        <a class="btn" id="returnBtn" href="com.municomb.studio://etsy-oauth">Return to B2M2 Studio</a>
+        <p class="fine">
+          If the app doesn't open, tap the button above. You can close this tab afterward.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
