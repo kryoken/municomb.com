@@ -4,33 +4,66 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Zik — Coming Soon</title>
-<meta name="description" content="Zik is coming soon. A standalone app that plays your stories and turns out loud, hands-free, in the car." />
+<meta name="description" content="Zik is coming soon. A standalone app that plays your stories and turns out loud, hands-free, in the car. Point your LLM at municomb.com/zik." />
 <style>
   :root { --ink:#101012; --muted:#5a5a62; --line:#e8e8ec; }
   * { box-sizing:border-box; }
   body { margin:0; background:#ffffff; color:var(--ink); font-family:system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing:antialiased; }
-  .wrap { max-width:640px; margin:0 auto; padding:36px 20px 48px; text-align:center; }
+  .wrap { max-width:720px; margin:0 auto; padding:36px 20px 48px; }
+  .center { text-align:center; }
   .mark { width:56px; height:56px; border-radius:16px; background:#101012; color:#fff; display:grid; place-items:center; font-weight:700; letter-spacing:.05em; font-size:20px; margin:0 auto 16px; }
   h1 { font-size:42px; margin:0; letter-spacing:.02em; }
   .soon { display:inline-block; margin:18px 0 0; padding:8px 16px; border:1px solid var(--line); border-radius:999px; font-size:14px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
   h2 { font-size:32px; line-height:1.15; margin:28px 0 12px; letter-spacing:-.01em; }
-  p { font-size:18px; line-height:1.6; color:var(--muted); margin:0 auto; max-width:520px; }
-  .card { margin:28px auto 0; border:1px solid var(--line); border-radius:20px; padding:20px; text-align:left; background:#f6f6f8; }
-  .card p { font-size:16px; color:#2a2a2e; }
+  h3 { font-size:22px; margin:36px 0 8px; }
+  h4 { font-size:17px; margin:22px 0 6px; }
+  p, li { font-size:16px; line-height:1.6; color:#2a2a2e; }
+  p.muted { color:var(--muted); }
+  .lead { font-size:18px; line-height:1.6; color:var(--muted); margin:0 auto; max-width:520px; }
+  .card { margin:24px 0; border:1px solid var(--line); border-radius:20px; padding:20px; background:#f6f6f8; }
+  .card p { font-size:16px; }
+  code { background:#efefF2; border:1px solid var(--line); border-radius:6px; padding:2px 6px; font-size:14px; }
+  ul { padding-left:20px; }
   footer { margin-top:36px; border-top:1px solid var(--line); padding-top:16px; color:var(--muted); font-size:14px; line-height:1.6; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="mark">Zik</div>
-  <h1>Zik</h1>
-  <div class="soon">Coming Soon</div>
-  <h2>Press play.<br />Drive. Listen.</h2>
-  <p>Zik is a standalone app that plays your stories and turns out loud, hands-free, in the car. Local voice, a queue that behaves, big controls — built for driving.</p>
+  <div class="center">
+    <div class="mark">Zik</div>
+    <h1>Zik</h1>
+    <div class="soon">Coming Soon</div>
+    <h2>Press play.<br />Drive. Listen.</h2>
+    <p class="lead">Zik is a standalone app that plays your stories and turns out loud, hands-free, in the car. Local voice, a queue that behaves, big controls — built for driving.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0;">Point your LLM at municomb.com/zik</h3>
+    <p><strong>This page is the landing page for agents, too.</strong> If you are an LLM or an agent, start here. If you are a person, this is the page your LLM needs.</p>
+    <p>Point your LLM / your agent at <strong>municomb.com/zik</strong> to learn how to talk to Zik.</p>
+  </div>
+
+  <h3>For agents: how to talk to Zik</h3>
+  <p class="muted">This is not apparent from the app alone, so it is written here, plainly.</p>
+  <ul>
+    <li><strong>Zik is a local player, not a cloud service, not a Muse feature.</strong> It plays turns on a phone or tablet, in order, with local voice, in the car.</li>
+    <li><strong>How a turn gets to Zik, once Voice Box lands:</strong> an email-shaped internal message to a local receiver — called Voice Box / Zik Mailman — not a full SMTP server, not a mailbox, not a calendar event.</li>
+    <li><strong>The shape, once proven:</strong> to <code>zik@localhost</code>, subject = conv_id, body = sentences, headers = STATUS: COMPLETE, count, checksum, authenticated sender only, verify before enqueue, dedup by Message-ID / conv_id.</li>
+    <li><strong>What is not true today, and must not be claimed:</strong> live Muse forward is not working yet. No agent can send a live turn directly to Zik from live Muse chat today. The bridge writer with a key is a separate piece to be proven, not assumed.</li>
+    <li><strong>First, for a person:</strong> the very first file that plays in Zik, on first download, is voice instructions explaining how to point whatever LLM at Zik. If those instructions are deleted, Reset restores them — see below.</li>
+  </ul>
+
+  <h3>For people: first play, and reset</h3>
+  <h4>First play</h4>
+  <p>On first download, before any story turn, the first file that plays is voice instructions on how to point your LLM at Zik. After those instructions, normal turns play. Those instructions are replayable, like any other turn.</p>
+  <h4>Reset</h4>
+  <p>Reset to default / Reset to original puts Zik back to its original settings. It is two-step: tap Reset, then confirm — “This will reset all of your settings” — listing exactly what will be deleted. The fancy version starts with only “Restore original instructions” checked, everything else unchecked, so you have to select what you want to delete. Check everything, confirm, and Zik is a brand new app again, with the first-play instructions back.</p>
+
   <div class="card">
     <p><strong>First release, from this page.</strong><br />
     Zik will be released here, direct from municomb.com/zik, as a standalone Android app. The full app page and user manual will live here with the first real, tested build. No store, no sign-in, no empty download — when the button appears here, it will be the real app.</p>
   </div>
+
   <footer>
     <p>Zik is a standalone app. This page does not describe mesh, network, or token systems.</p>
   </footer>
