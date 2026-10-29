@@ -16,13 +16,15 @@
   p,li{color:var(--ink)} .muted{color:var(--muted)}
   ul{padding-left:20px} li{margin:6px 0}
   code{font-family:ui-monospace,monospace}
+  table{border-collapse:collapse;width:100%;margin:12px 0}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
 </style>
 </head>
 <body>
 <main>
   <div class="banner">
-    <strong>DRAFT — HELD FOR LAUNCH — NOT PUBLISHED</strong>
-    <span class="muted">Added 2026-10-29 to the proposed website draft we are holding for launch. Do not publish, do not link live, until Ken gates launch. SDK is NOT ready.</span>
+    <strong>DRAFT — HELD FOR LAUNCH — NOT PUBLISHED — NOT LIVE</strong>
+    <span class="muted">Wired 2026-10-29 from the SDK plan draft v1, so this page is ready to move to the local internal site when Ken gates that move. Moving it locally does NOT publish it to municomb.com, and does NOT make the SDK ready. SDK is NOT ready.</span>
   </div>
 
   <p class="muted">MUNIComb &nbsp;/&nbsp; SDK</p>
@@ -32,39 +34,80 @@
 
   <h2>What the SDK will be, when it is ready</h2>
   <ul>
-    <li><strong>A port and endpoint map</strong> — where services listen, so developers and AI agents do not hand-guess ports or endpoints.</li>
-    <li><strong>Endpoints + auth</strong> — how to get in, how a key is issued, revoked, and rate-limited.</li>
-    <li><strong>A job envelope</strong> — what you send in, what comes back, and a full error when something fails, never a generic error.</li>
-    <li><strong>A catalog of job types</strong> — what jobs actually exist, and which are proven, not just designed.</li>
-    <li><strong>Examples and a hello-world</strong> — one working job, with the same output shape in test and in real use.</li>
-    <li><strong>Pay and credits</strong> — how a job is priced, and how to check a payout.</li>
-    <li><strong>Verification</strong> — how to prove a result, and how a failed job fails loudly, with credit released, never stuck forever.</li>
-    <li><strong>Retries, timeouts, and dedup</strong> — so a retry does not double-pay or double-play.</li>
-    <li><strong>Machine-readable docs</strong> — so agentic developers can write to the network API without hand-rolling every call.</li>
-    <li><strong>Versioning and a changelog</strong> — what changed, what is deprecated, and what replaces it.</li>
-    <li><strong>A clear agreement boundary</strong> — what is open, what stays behind the API, and what must be disclosed.</li>
+    <li><strong>A port and endpoint map</strong> — where services listen, so developers and AI agents do not hand-guess ports or endpoints. The map is verified against actual services before it is claimed live for SDK use, and re-verified before anyone codes against it. Never type a port from memory.</li>
+    <li><strong>Endpoints + auth</strong> — how to get in, how a key is issued, revoked, and rate-limited. Status: OPEN.</li>
+    <li><strong>A job envelope</strong> — what you send in, what comes back, and a full error when something fails, never a generic error. Status: DESIGN-ONLY, not proved by a real job yet.</li>
+    <li><strong>A catalog of job types</strong> — what jobs actually exist, and which are proven, not just designed. The SDK catalog must match the proven catalog, not copy a claim from it. Status: OPEN.</li>
+    <li><strong>Examples and a hello-world</strong> — one working job, with the same output shape in test and in real use. A hello-world is proven only by a real job, not by a snippet that was never run. Status: OPEN.</li>
+    <li><strong>Pay and credits</strong> — how a job is priced, and how to check a payout. Status: OPEN, gate not cleared. No token, no charge by this draft.</li>
+    <li><strong>Verification</strong> — how to prove a result, and how a failed job fails loudly, with credit released, never stuck forever. Status: DESIGNED, NOT SDK-PROVEN.</li>
+    <li><strong>Retries, timeouts, and dedup</strong> — so a retry does not double-pay or double-play. Status: OPEN.</li>
+    <li><strong>Machine-readable docs</strong> — so agentic developers can write to the network API without hand-rolling every call. Status: OPEN, placeholder only.</li>
+    <li><strong>Versioning and a changelog</strong> — what changed, what is deprecated, and what replaces it. Scheme proposed below, no version published yet.</li>
+    <li><strong>A clear agreement boundary</strong> — what is open, what stays behind the API, and what must be disclosed. Status: OPEN, review owed before lock-in. This page is not legal advice.</li>
   </ul>
 
-  <h2>Status now — draft, not ready</h2>
-  <p>SDK plan draft v1 is on record in Wyatt (PR #34 merged 2026-10-29, main <code>8a434799</code>), built off the SDK readiness list in that same record. By that record's own test, the SDK is <strong>not ready</strong>:</p>
-  <ul>
-    <li>Port table is the furthest along, and is still being verified against actual services before it is claimed live for SDK use.</li>
-    <li>Everything else is open or design-only, as marked in the draft.</li>
-    <li>No SDK client code, no public documentation site, and no launch is authorized by this draft alone.</li>
-  </ul>
-  <p class="muted">Ready means: the port table is verified, the envelope + catalog + hello-world are proven by a real job, auth + pay + verification are checked live, and each item is gated item by item — not when a list or a draft is written.</p>
+  <h2>Status table — from the plan draft, honest, not ready</h2>
+  <table>
+    <tr><th>Item</th><th>Status</th><th>What that means</th></tr>
+    <tr><td>Port and endpoint map</td><td>Furthest along, still being verified</td><td>Starting point from live checks, not yet added as its own Wyatt record. Do not claim it live for SDK use until that record lands.</td></tr>
+    <tr><td>Endpoints + auth</td><td>OPEN</td><td>Base, key issue / revoke / rate-limit not yet a proven SDK contract.</td></tr>
+    <tr><td>Job envelope</td><td>DESIGN-ONLY</td><td>Shape designed, no real job proved under it yet.</td></tr>
+    <tr><td>Catalog of job types</td><td>OPEN</td><td>Must match the proven catalog, never list a proposed job as live.</td></tr>
+    <tr><td>Examples / hello-world</td><td>OPEN</td><td>No SDK hello-world proven yet.</td></tr>
+    <tr><td>Pay / credits</td><td>OPEN, gate not cleared</td><td>Credits-first, no token near launch, counsel before anything token-shaped. Gate not cleared by this draft.</td></tr>
+    <tr><td>Verification</td><td>DESIGNED, NOT SDK-PROVEN</td><td>Methods designed, not proven by a real job yet.</td></tr>
+    <tr><td>Retries / timeouts / dedup</td><td>OPEN</td><td>No proven contract yet.</td></tr>
+    <tr><td>Machine-readable docs</td><td>OPEN, placeholder only</td><td>Not ready, not here yet.</td></tr>
+    <tr><td>Versioning / changelog</td><td>DESIGN in this draft</td><td>Scheme proposed, no version published yet.</td></tr>
+    <tr><td>Agreement / license boundary</td><td>OPEN, review owed</td><td>Open button client, network behind the API, review before lock-in.</td></tr>
+  </table>
+  <p class="muted">Status words, used everywhere in SDK docs, with no other meanings: PROVEN = record + job proof, Ken-gated. DESIGN-ONLY = design finished, no real job proof yet. OPEN = not designed, not proven, or gate not cleared. DEPRECATED = was proven, superseded, with replacement named, and kept in the changelog, never silently deleted.</p>
 
-  <h2>How it will stay current</h2>
+  <h2>What “proven” means</h2>
+  <p>Proven means exactly this, nothing looser: a job type, endpoint, example, or recipe is proven only if there is a Wyatt record for it <em>and</em> a tracked job proof behind it — the job ran, with what input, what output and hash, whether it verified, and whether it paid where pay applies. Anything without both stays marked open or design-only, even if the design is finished on paper.</p>
+  <p class="muted">Recommended code in the SDK can therefore be checked against the network, not just trusted from a doc.</p>
+
+  <h2>How it will stay current — living docs, not a second memory</h2>
   <p>Wyatt is the historical record — once merged, it is corrected by a new record on top, never silently edited. SDK docs are the living current reference — when an API changes, a port moves, or a new job type is proven, the SDK docs change with it, in place, with a version and a changelog entry.</p>
   <p class="muted">Otherwise a developer codes against a stale network, and the failure looks like their bug, not ours.</p>
-  <p>Only merged, gated records feed the SDK. A draft, an open proposal, or a local note does not, no matter how good it looks. A tag alone does not make something proven — proven still needs a record and a job proof behind it.</p>
+  <p><strong>Dynamic tag design — proposed, not built, not a decision to build a generator yet.</strong> In plain words: a Wyatt record carries a structured tag for its SDK category, status, job proof, Wyatt record, and first appearance. The SDK table for that category is pulled from merged Wyatt records by those tags, on the next generation. When a new API lands in a merged Wyatt record, with the right tag, it shows up in the SDK table. When a port moves, the tagged port record changes, and the SDK table changes with it.</p>
+  <ul>
+    <li>Only <strong>merged</strong> Wyatt main feeds the SDK. An open PR, a draft, or a local note does not, no matter how good it looks.</li>
+    <li>A tag alone does not make something proven. Proven still needs a record + job proof. A tagged design stays design-only until that proof lands.</li>
+    <li>Every generated SDK table records the Wyatt main SHA it was pulled from, so a reader knows exactly which snapshot they are coding against.</li>
+    <li>A generated table never claims an item ready that its source record marks open or design-only. Status travels with the item.</li>
+    <li>The generator never pulls secrets, keys, or key material into SDK docs, even if tagged.</li>
+    <li>Agreement / license items and pay / token-shaped items do <strong>not</strong> auto-feed on a tag alone. They need a human gate in addition: review before lock-in, and counsel + credits-first gate for anything token-shaped, even if tagged.</li>
+  </ul>
+  <p class="muted">Retro-tagging existing Wyatt files, vs tagging forward only, is still open and must be decided — this page does not retro-tag anything by itself.</p>
 
-  <h2>For developers, later</h2>
+  <h2>Versioning — proposed scheme</h2>
+  <ul>
+    <li>SDK version starts at <code>0.1.0</code> for the first gated draft, not <code>1.0</code>. <code>1.0</code> is reserved for a gated, proven hello-world + envelope + catalog + auth + pay + verification set, not for a draft.</li>
+    <li>Each SDK release records: version, date, Wyatt main SHA generated from, list of items added / changed / deprecated, and Ken gate reference for each gated item.</li>
+    <li>A deprecated item stays in the changelog with its replacement. It is not silently deleted from SDK docs a developer may already be coding against.</li>
+  </ul>
+
+  <h2>Ready means — unchanged from the plan</h2>
+  <p>The SDK is ready only when: the port table is verified against actual services, the envelope + catalog + hello-world are proven by a real job, auth + pay + verification are checked live, and Ken gates the list item by item — not when this draft, or any list, is written.</p>
+  <p>By that test, the SDK is <strong>not ready</strong> as of this draft. Port table is the furthest along, and even it is not yet added to Wyatt main as a record. Everything else is open or design-only, as marked above.</p>
+
+  <h2>What this draft does NOT do</h2>
+  <ul>
+    <li>No code build, no SDK client code, no machine-readable server build.</li>
+    <li>No SDK publish, public or private, and no public documentation site launch.</li>
+    <li>No company formation, no merchant, no token, no charge, no pay change.</li>
+    <li>No claim that any endpoint, job type, price, or verification method on this page is ready, proven, or live for SDK use, beyond the status markings above.</li>
+  </ul>
+
+  <h2>For developers, later — and for the local move, now</h2>
   <p>When the SDK is gated ready, this page will link the real docs, the real hello-world, and the real version and changelog. Until then, this page stays a draft held for launch.</p>
-  <p class="muted">Source, internal only: Wyatt PR #34 — SDK readiness list + SDK plan draft v1, main <code>8a434799</code>. Public copy on this page names no internals, no internal network addresses, and no economics — those stay close until Ken raises them for launch.</p>
+  <p>For the local move: this page is now wired from the plan draft, so when it moves to the MUNIComb local internal site, it is ready to go as a draft — same banner, same status table, same NOT READY verdict, no live links, no internals, no economics. Moving it locally does not publish it, and does not change its status.</p>
+  <p class="muted">Source, internal only: Wyatt PR #34 — SDK readiness list + SDK plan draft v1, main <code>8a434799</code> at PR #34 merge. Public copy on this page names no internals, no internal network addresses or ports, and no economics — those stay close until Ken raises them for launch.</p>
 
   <footer class="muted" style="margin-top:48px;border-top:1px solid var(--line);padding-top:16px">
-    MUNIComb — Mesh Unity Network Incentive &nbsp;/&nbsp; municomb.com &nbsp;/&nbsp; SDK draft, held for launch
+    MUNIComb — Mesh Unity Network Incentive &nbsp;/&nbsp; municomb.com &nbsp;/&nbsp; SDK draft, held for launch, wired from plan draft v1
   </footer>
 </main>
 </body>
