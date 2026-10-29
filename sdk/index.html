@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MUNIComb SDK — Draft, held for launch</title>
+<style>
+  :root{color-scheme:light dark;--paper:#edf2ec;--ink:#10231a;--muted:#4f6156;--line:rgba(16,35,26,.16);--mesh:#1c7a46}
+  @media(prefers-color-scheme:dark){:root{--paper:#07110c;--ink:#eaf3ec;--muted:#96a99c;--line:rgba(222,241,228,.13);--mesh:#53ce82}}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,sans-serif;line-height:1.55}
+  main{max-width:760px;margin:0 auto;padding:32px 20px 64px}
+  .banner{border:2px solid var(--mesh);padding:14px 16px;margin-bottom:28px}
+  .banner strong{display:block}
+  h1{font-size:clamp(36px,6vw,56px);line-height:1.05;margin:8px 0}
+  h2{margin-top:36px;border-top:1px solid var(--line);padding-top:18px}
+  p,li{color:var(--ink)} .muted{color:var(--muted)}
+  ul{padding-left:20px} li{margin:6px 0}
+  code{font-family:ui-monospace,monospace}
+</style>
+</head>
+<body>
+<main>
+  <div class="banner">
+    <strong>DRAFT — HELD FOR LAUNCH — NOT PUBLISHED</strong>
+    <span class="muted">Added 2026-10-29 to the proposed website draft we are holding for launch. Do not publish, do not link live, until Ken gates launch. SDK is NOT ready.</span>
+  </div>
+
+  <p class="muted">MUNIComb &nbsp;/&nbsp; SDK</p>
+  <h1>Build on the mesh.<br />Without guessing.</h1>
+  <p>Add a button to a stock tool, tap it, a job runs on the network, and the result returns to the spot where the button was pressed. The button is only a client. The network stays behind the API.</p>
+  <p class="muted">That split is the whole point: your tool stays yours, the network stays the network, and work is tracked and verified, not taken on trust.</p>
+
+  <h2>What the SDK will be, when it is ready</h2>
+  <ul>
+    <li><strong>A port and endpoint map</strong> — where services listen, so developers and AI agents do not hand-guess ports or endpoints.</li>
+    <li><strong>Endpoints + auth</strong> — how to get in, how a key is issued, revoked, and rate-limited.</li>
+    <li><strong>A job envelope</strong> — what you send in, what comes back, and a full error when something fails, never a generic error.</li>
+    <li><strong>A catalog of job types</strong> — what jobs actually exist, and which are proven, not just designed.</li>
+    <li><strong>Examples and a hello-world</strong> — one working job, with the same output shape in test and in real use.</li>
+    <li><strong>Pay and credits</strong> — how a job is priced, and how to check a payout.</li>
+    <li><strong>Verification</strong> — how to prove a result, and how a failed job fails loudly, with credit released, never stuck forever.</li>
+    <li><strong>Retries, timeouts, and dedup</strong> — so a retry does not double-pay or double-play.</li>
+    <li><strong>Machine-readable docs</strong> — so agentic developers can write to the network API without hand-rolling every call.</li>
+    <li><strong>Versioning and a changelog</strong> — what changed, what is deprecated, and what replaces it.</li>
+    <li><strong>A clear agreement boundary</strong> — what is open, what stays behind the API, and what must be disclosed.</li>
+  </ul>
+
+  <h2>Status now — draft, not ready</h2>
+  <p>SDK plan draft v1 is on record in Wyatt (PR #34 merged 2026-10-29, main <code>8a434799</code>), built off the SDK readiness list in that same record. By that record's own test, the SDK is <strong>not ready</strong>:</p>
+  <ul>
+    <li>Port table is the furthest along, and is still being verified against actual services before it is claimed live for SDK use.</li>
+    <li>Everything else is open or design-only, as marked in the draft.</li>
+    <li>No SDK client code, no public documentation site, and no launch is authorized by this draft alone.</li>
+  </ul>
+  <p class="muted">Ready means: the port table is verified, the envelope + catalog + hello-world are proven by a real job, auth + pay + verification are checked live, and each item is gated item by item — not when a list or a draft is written.</p>
+
+  <h2>How it will stay current</h2>
+  <p>Wyatt is the historical record — once merged, it is corrected by a new record on top, never silently edited. SDK docs are the living current reference — when an API changes, a port moves, or a new job type is proven, the SDK docs change with it, in place, with a version and a changelog entry.</p>
+  <p class="muted">Otherwise a developer codes against a stale network, and the failure looks like their bug, not ours.</p>
+  <p>Only merged, gated records feed the SDK. A draft, an open proposal, or a local note does not, no matter how good it looks. A tag alone does not make something proven — proven still needs a record and a job proof behind it.</p>
+
+  <h2>For developers, later</h2>
+  <p>When the SDK is gated ready, this page will link the real docs, the real hello-world, and the real version and changelog. Until then, this page stays a draft held for launch.</p>
+  <p class="muted">Source, internal only: Wyatt PR #34 — SDK readiness list + SDK plan draft v1, main <code>8a434799</code>. Public copy on this page names no internals, no internal network addresses, and no economics — those stay close until Ken raises them for launch.</p>
+
+  <footer class="muted" style="margin-top:48px;border-top:1px solid var(--line);padding-top:16px">
+    MUNIComb — Mesh Unity Network Incentive &nbsp;/&nbsp; municomb.com &nbsp;/&nbsp; SDK draft, held for launch
+  </footer>
+</main>
+</body>
+</html>
